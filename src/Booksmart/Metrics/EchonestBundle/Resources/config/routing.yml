@@ -1,0 +1,15 @@
+booksmart_metrics_echonest_search:
+    path:     /artist/search
+    defaults: { _controller: BooksmartMetricsEchonestBundle:Default:search }
+
+booksmart_metrics_echonest_populateGenres:
+    path:     /genre/populate
+    defaults: { _controller: BooksmartMetricsEchonestBundle:Default:populateGenres }
+
+booksmart_metrics_echonest_populateTopArtists:
+    path:     /artist/populate
+    defaults:  { _controller: BooksmartMetricsEchonestBundle:Default:populateTopArtists }
+
+booksmart_metrics_echonest_artists:
+    path:     /artist
+    defaults:  { _controller: BooksmartMetricsEchonestBundle:Default:artists }

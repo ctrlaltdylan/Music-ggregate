@@ -1,0 +1,19 @@
+parameters:
+#    booksmart_metrics_soundcloud.example.class: Booksmart\Metrics\SoundcloudBundle\Example
+    soundcloudClientId: '6f4be45ac6121f6a83f591e3ce4e7835'
+    soundcloudClientSecret: 'f3aebc077a0d975e0bbcb4ce5b0704af'
+
+services:
+#    booksmart_metrics_soundcloud.example:
+#        class: %booksmart_metrics_soundcloud.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+## Soundcloud Service is the actual offical Soundcloud API Wrapper
+    soundcloudservice:
+        class: Soundcloud\Service
+        arguments: [%soundcloudClientId%, %soundcloudClientSecret% ]
+
+## Soundcloud is this bundle's personal Soundcloud service
+    soundcloud:
+        class: Booksmart\Metrics\SoundcloudBundle\Soundcloud
+

@@ -1,0 +1,3 @@
+booksmart_metrics_seatgeek_eventsSearch:
+    path:     /event/search
+    defaults: { _controller: BooksmartMetricsSeatgeekBundle:Default:eventsSearch }

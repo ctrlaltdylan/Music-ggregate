@@ -1,0 +1,9 @@
+
+
+booksmart_metrics_soundcloud_search:
+    path:     /
+    defaults: {_controller: BooksmartMetricsSoundcloudBundle:Default:search}
+
+booksmart_metrics_soundcloud_tracks:
+    path:     /tracks
+    defaults: {_controller: BooksmartMetricsSoundcloudBundle:Default:tracks}

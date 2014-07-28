@@ -1,0 +1,59 @@
+Booksmart\Metrics\SoundcloudBundle\Entity\Track:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        soundcloudTrackId:
+            type: integer
+            column: soundcloud_track_id
+        title:
+            type: string
+            length: '255'
+        genre:
+            type: string
+            length: '255'
+            nullable: TRUE
+        duration:
+            type: integer
+        uri:
+            type: string
+            length: '255'
+        playbackCount:
+            type: integer
+            nullable: TRUE
+        downloadCount:
+            type: integer
+            nullable: TRUE
+        favoritesCount:
+            type: integer
+        commentCount:
+            type: integer
+        downloadUrl:
+            type: string
+            length: '255'
+            nullable: TRUE
+        originalFormat:
+            type: string
+            length: '255'
+        artworkUrl:
+            type: string
+            length: '255'
+            nullable: TRUE
+        permalinkUrl:
+            type: string
+            length: '255'
+        avatarUrl:
+            type: string
+            length: '255'
+            nullable: TRUE
+    lifecycleCallbacks: {  }
+
+    manyToOne:
+        search:
+            targetEntity: Search
+            inversedBy: results

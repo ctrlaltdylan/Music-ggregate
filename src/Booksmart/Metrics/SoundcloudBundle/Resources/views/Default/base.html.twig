@@ -1,0 +1,41 @@
+<html>
+	<head>
+		{% stylesheets 'bundles/bootstrap/css/*' %}
+			<link rel = 'stylesheet' href = {{ asset_url }} />
+		{% endstylesheets %}
+		
+		{% javascripts 'bundles/bootstrap/js/*' %}
+			<script  src = {{ asset_url }}></script>
+		{% endjavascripts %}
+	</head>
+	<body>
+
+		<div class="navbar">
+		  <div class="navbar-inner">
+		    <a class="brand" href="#">What's Hot?</a>
+		    <ul class="nav">
+		      <li class="active">
+		      	<a href="{{path('booksmart_metrics_soundcloud_search')}}">Search</a>
+		      </li>
+		      <li><a href="{{path('booksmart_metrics_soundcloud_tracks')}}">Tracks</a></li>
+		      <li><a href="#">Link</a></li>
+		    </ul>
+		  </div>
+		</div>
+		<div class = 'container-fluid'>
+			<div class = 'row-fluid'>
+				<div class = "span2">{#-SideBar Span-#}
+					<ul class="nav nav-list">
+					  <li class="nav-header">Search SoundCloud</li>
+					  <li class="active"><a href="#">Song</a></li>
+					  <li><a href="#"></a>Genre</li>
+					  <li class='nav-header'>Search EchoNest</li>
+					  <li><a href = '{{ path('booksmart_metrics_echonest_search')}}'>Artists</a></li>
+					</ul>
+					{% block title %}{% endblock %}
+				</div>
+				<div class = 'span10'>{#-Main Content Span-#}
+					{% block body %}{% endblock %}
+				</div>
+			</div>
+		</div>

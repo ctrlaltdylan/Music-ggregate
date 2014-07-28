@@ -1,0 +1,39 @@
+{% extends 'BooksmartMetricsSoundcloudBundle:Default:base.html.twig' %}
+
+{% block body %}
+	<table class = 'table'>
+		<thead>
+			<tr>
+				<th>Track ID</th>
+				<th>Title</th>
+				<th>Uploaded by</th>
+				<th>Plays</th>
+				<th>Likes</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for track in tracks %}
+			<tr>
+				<td>
+					{{ track.id }}
+				</td>
+				<td>
+					<a href = {{ track.uri}}>
+						{{ track.title }}
+					</a>
+				</td>
+				<td>
+					{{ track.user.username }}
+				</td>
+				<td>
+					{{ track.playback_count }}
+				</td>
+				<td>
+					{{ track.favoritings_count }}
+				</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

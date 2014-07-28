@@ -1,0 +1,9 @@
+{% extends('BooksmartMetricsSoundcloudBundle:Default:base.html.twig') %}
+
+{% block body %}
+
+	{% for genre in genres %}
+		{{genre.name}}<br/>
+	{% endfor %}
+
+{% endblock %}

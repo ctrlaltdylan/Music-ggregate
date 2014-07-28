@@ -1,0 +1,12 @@
+booksmart_metrics_seatgeek:
+    resource: "@BooksmartMetricsSeatgeekBundle/Resources/config/routing.yml"
+    prefix:   /
+
+booksmart_metrics_echonest:
+    resource: "@BooksmartMetricsEchonestBundle/Resources/config/routing.yml"
+    prefix:   /
+
+booksmart_metrics_soundcloud:
+    resource: "@BooksmartMetricsSoundcloudBundle/Resources/config/routing.yml"
+    prefix:   /
+

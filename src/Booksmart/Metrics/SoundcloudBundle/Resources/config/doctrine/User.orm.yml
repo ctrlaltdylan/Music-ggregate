@@ -1,0 +1,62 @@
+Booksmart\Metrics\SoundcloudBundle\Entity\User:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        soundcloudUserId:
+            type: integer
+            column: soundcloud_user_id
+        username:
+            type: string
+            length: '255'
+        permalink:
+            type: string
+            length: '255'
+        uri:
+            type: string
+            length: '255'
+        permalinkUrl:
+            type: string
+            length: '255'
+            column: permalink_url
+        avatarUrl:
+            type: string
+            length: '255'
+            column: avatar_url
+        county:
+            type: string
+            length: '100'
+        fullName:
+            type: string
+            length: '255'
+            column: full_name
+        city:
+            type: string
+            length: '255'
+        description:
+            type: string
+            length: '255'
+        website:
+            type: string
+            length: '255'
+        trackCount:
+            type: integer
+            column: track_count
+        playlistCount:
+            type: integer
+            column: playlist_count
+        followersCount:
+            type: integer
+            column: followers_count
+        followingCount:
+            type: integer
+            column: following_count
+        publicFavoritesCount:
+            type: integer
+            column: public_favorites_count
+    lifecycleCallbacks: {  }

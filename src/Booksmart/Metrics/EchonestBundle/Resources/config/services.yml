@@ -1,0 +1,14 @@
+parameters:
+#    booksmart_metrics_echonest.example.class: Booksmart\Metrics\EchonestBundle\Example
+    booksmart_metrics_echonest.apiKey: 'LEDCWJMNLCLWAGJEG'
+    booksmart_metrics_echonest.consumerKey: '76511aa987e6fd4853691c01d2d90209'
+    booksmart_metrics_echonest.sharedSecret: 'abk7brt3REuVb65RQAsm8g'
+
+services:
+#    booksmart_metrics_echonest.example:
+#        class: %booksmart_metrics_echonest.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    echonest:
+        class: Booksmart\Metrics\EchonestBundle\Echonest
+        arguments: [%booksmart_metrics_echonest.apiKey%]

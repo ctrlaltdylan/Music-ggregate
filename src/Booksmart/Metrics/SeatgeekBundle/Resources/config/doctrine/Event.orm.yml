@@ -1,0 +1,25 @@
+Booksmart\Metrics\SeatgeekBundle\Entity\Event:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: '255'
+        url:
+            type: string
+            length: '255'
+        datetimeLocal:
+            type: string
+            length: '255'
+        type:
+            type: string
+            length: '50'
+        seatgeekId:
+            type: integer
+    lifecycleCallbacks: {  }

@@ -1,0 +1,34 @@
+Booksmart\Metrics\EchonestBundle\Entity\Artist:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '100'
+        echonestId:
+            type: string
+            length: '255'
+            column: echonest_id 
+        hotness:
+            type: float
+            nullable: TRUE
+    lifecycleCallbacks: {  }
+
+    manyToOne:
+        artistSearch:
+            targetEntity: Booksmart\Metrics\SoundcloudBundle\Entity\Search
+            inversedBy: artistResults
+
+    manyToOne:
+        genre:
+            targetEntity: Genre
+            inversedBy: artists
+            joinColumn:
+                name: genre_id
+                referencedColumnName: id

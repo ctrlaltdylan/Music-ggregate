@@ -1,0 +1,7 @@
+parameters:
+#    booksmart_metrics_seatgeek.example.class: Booksmart\Metrics\SeatgeekBundle\Example
+
+services:
+#    booksmart_metrics_seatgeek.example:
+#        class: %booksmart_metrics_seatgeek.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
