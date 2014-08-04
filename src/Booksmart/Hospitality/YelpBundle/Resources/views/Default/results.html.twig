@@ -1,10 +1,47 @@
 {% extends('BooksmartMetricsSoundcloudBundle:Default:base.html.twig') %}
 
+{% block additionalCSS %}
+    <style>
+      html, body, #map-canvas {
+        height: 70%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+    
+    {{dump(results)}}
+function initialize() {
+
+  var myLatlng = new google.maps.LatLng({{results.region.center.latitude}}, {{results.region.center.longitude}});
+  var mapOptions = {
+    zoom: 8,
+    center: myLatlng
+  }
+  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+{% for business in results.businesses %}
+  var marker = new google.maps.Marker({
+      {#position: new google.maps.LatLng({{business.lat}}, {{business.lng}});#}
+      map: map,
+      title: 'Hello World!'
+  });
+}
+{% endfor %}
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+{% endblock %}
+
+
+
 {% block body %}
 
-{{form(form)}}
-
 {{dump(results)}}
+
+{{form(form)}}
+<div id = 'map-canvas'></div>
 <table class = 'table table-striped'>
 	<thead>
 		<tr>
@@ -15,7 +52,13 @@
 				Name
 			</th>
 			<th>
-				Location
+				Neighborhood
+			</th>
+			<th>
+				Address
+			</th>
+			<th>
+				Phone
 			</th>
 		</tr>
 	</thead>
@@ -26,10 +69,16 @@
 			<img src = "{{business.image_url}}"></img>
 		</td>
 		<td>
-			{{business.name}}
+			<a href = "{{business.url}}" >{{business.name}}</a>
 		</td>
 		<td>
-			{{business.location.address[0]}} {{business.location.city}}
+			{{business.location.neighborhoods[0]}}
+		</td>
+		<td>
+			{{business.location.address[0]}} {{business.location.city}} {{business.location.state_code}}
+		</td>
+		<td>
+			{{business.phone}}
 		</td>
 	</tr>
 {% endfor %}

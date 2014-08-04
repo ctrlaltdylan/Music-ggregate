@@ -4,6 +4,8 @@ parameters:
     consumer_secret: TwAAZ9gB7BeJVF2EvAQ_NaFnajY
     token: IknWFbvD_GfAnZ8oPiYVAscKAjhXJs0w
     token_secret: FhT2uhdnTiP5jPwxSE6uxAGHWKk
+
+    booksmart_hospitality_geocode_api_key: AIzaSyCo9JrEfU3bw-yHQymgbzAnVvwy-WCmchM
 services:
 #    booksmart_hospitality_yelp.example:
 #        class: %booksmart_hospitality_yelp.example.class%
@@ -11,3 +13,7 @@ services:
     yelp:
         class: Booksmart\Hospitality\YelpBundle\Yelp
         arguments: [%consumer_key%, %consumer_secret%, %token%, %token_secret%]
+
+    geocode:
+        class: Booksmart\Hospitality\YelpBundle\Geocode
+        arguments: [%booksmart_hospitality_geocode_api_key%]
