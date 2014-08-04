@@ -13,3 +13,14 @@ booksmart_metrics_echonest_populateTopArtists:
 booksmart_metrics_echonest_artists:
     path:     /artist
     defaults:  { _controller: BooksmartMetricsEchonestBundle:Default:artists }
+populate:
+    path:     /populate
+    defaults: { _controller: BooksmartMetricsEchonestBundle:Genre:populate }
+
+booksmart_metrics_echonest_genre_search:
+    path:     /genre/search/
+    defaults: { _controller: BooksmartMetricsEchonestBundle:Genre:search }
+
+index:
+    path:     /index
+    defaults: { _controller: BooksmartMetricsEchonestBundle:Genre:index }

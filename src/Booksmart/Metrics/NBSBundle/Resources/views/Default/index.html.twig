@@ -1,0 +1,14 @@
+{% extends('BooksmartMetricsSoundcloudBundle:Default:base.html.twig') %}
+
+{%block body%}
+
+{{form_start(form)}}
+
+	<div class = 'input-append'>
+	{{form_widget(form.query, {'class': 'span2'})}}
+
+	{{form_widget(form.Go, {'class': 'add-on'})}}
+	</div>
+
+{{form_end(form)}}
+{%endblock%}

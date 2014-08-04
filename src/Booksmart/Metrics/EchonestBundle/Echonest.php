@@ -11,6 +11,8 @@ class Echonest extends Controller {
 
 	private $shared_secret;
 
+	private $nameQuery = null;
+
 	private $genreQuery = null;
 
 	private $resultsQuery = null;
@@ -22,6 +24,13 @@ class Echonest extends Controller {
 	function __construct($api_key)
 	{
 		$this->api_key = $api_key;
+	}
+
+	public function name($query){
+
+		$this->artistQuery = '&name=' . urlencode($query);
+
+		return $this;
 	}
 
 	public function genre($query){
@@ -42,7 +51,7 @@ class Echonest extends Controller {
 
 		try {
 
-			$queryUrl = $this->base_url . 'api_key=' . $this->api_key . '&format=json' . $this->resultsQuery .  $this->genreQuery;
+			$queryUrl = $this->base_url . 'api_key=' . $this->api_key . '&format=json' . $this->nameQuery . $this->resultsQuery .  $this->genreQuery;
 			$response = file_get_contents($queryUrl);
 			$json = json_decode($response);
 

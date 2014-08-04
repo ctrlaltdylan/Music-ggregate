@@ -1,0 +1,3 @@
+booksmart_metrics_nbs_homepage:
+    path:     /nbs
+    defaults: { _controller: BooksmartMetricsNBSBundle:Default:index }

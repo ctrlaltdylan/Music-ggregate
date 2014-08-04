@@ -1,0 +1,7 @@
+parameters:
+#    booksmart_metrics_instagram.example.class: Booksmart\Metrics\InstagramBundle\Example
+
+services:
+#    booksmart_metrics_instagram.example:
+#        class: %booksmart_metrics_instagram.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -15,7 +15,7 @@ class DefaultController extends Controller
     {
     	$search = new Search();
 
-    	$form = $this->createFormBuilder($search)
+    	$form = $this->createFormBuilder()
     		->add('query', 'text')
     		->add('Go', 'submit')
     		->getForm();
@@ -27,7 +27,7 @@ class DefaultController extends Controller
     		    $echonest = $this->get('echonest');
 
     			$results  = $echonest
-    						->genre($search->getQuery())
+    						->artist()
     						->search();
 
 
@@ -45,23 +45,7 @@ class DefaultController extends Controller
 
     public function populateGenresAction()
     {
-    	$echonest = $this->get('echonest');
 
-    	$responseJson = $echonest->manualSearch('http://developer.echonest.com/api/v4/genre/list?api_key=LEDCWJMNLCLWAGJEG&format=json&results=2000');
-    	$em = $this->getDoctrine()->getManager();
-
-    	foreach($responseJson->response->genres as $genre){
-    		//save to database
-    		$genreEntry = new Genre;
-    		$genreEntry->setName($genre->name);
-    		$em->persist($genreEntry);
-
-    	}
-    	$em->flush();
-
-    	return $this->render('BooksmartMetricsEchonestBundle:Default:genrePopulation.html.twig', array(
-    					'genres' => $responseJson->response->genres,
-    	));
     }
 
     public function populateTopArtistsAction()

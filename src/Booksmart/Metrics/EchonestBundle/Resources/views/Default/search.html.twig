@@ -1,9 +1,129 @@
 {% extends 'BooksmartMetricsSoundcloudBundle:Default:base.html.twig' %}
 
+{% block additionalCSS %}
+	<style>
+		.genre-selection {
+			border-style: solid;
+			border-width: 1px;
+			border-color: black;
+			width: 260px;
+			height: 180px;
+			overflow: scroll;
+		}
+
+		.genre-selection table tr:hover {
+			background-color:#08c;
+			color: white;
+		}
+
+		#genre-results table tr {
+			cursor: pointer;
+		}
+	</style>
+{% endblock %}
+
 {% block body %}
 
 Artist Search Page
+<div class = 'row'>
+	{{form_start(form)}}
+	<div class = 'form-group'>
+		<label>Artist</label>
+		{{form_widget(form.query)}}
+	</div>
+	<div id = 'genre-options'></div>
 
-	{{form(form)}}
+	<div class = 'form-group'>
+		<input type = 'text' id = 'genre-search' class = 'form-control' />
+	</div>
+	<ul class = 'thumbnails'>
+		<li class = 'span3'>
+				<label>Genres</label>
+				<div id = 'genre-results' class = 'genre-selection thumbnail'>
+					<table>
+					</table>
+				<div>
+		</li>
+		<li class = 'span3'>
+			<label>Selection</label>
+			<div id = 'genre-selection' class = 'genre-selection thumbnail'>
+				<table>
+				</table>
+			</div>
+		</li>
+	</ul
+</div>
+	{{form_end(form)}}
 
+
+{# script for AJAX'ing the Genres text box #}
+<script>
+	$(document).ready(function(){
+
+		//Populate the genre search results thumbnail
+		$('#genre-search').keyup(function(){
+			$('#genre-results').children('table').empty();
+			var query = $('#genre-search').val()
+			// Using the core $.ajax() method
+			$.ajax({
+			    // the URL for the request
+			    url: "/genre/search",
+			 
+			    // the data to send (will be converted to a query string)
+			    data: {
+
+			        name: query
+			    },
+			 
+			    // whether this is a POST or GET request
+			    type: "GET",
+			 
+			    // the type of data we expect back
+			    dataType : "json",
+			 
+			    // code to run if the request succeeds;
+			    // the response is passed to the function
+			    success: function( response ) {
+			    	$.each( response , function(key, value){
+			    		$('#genre-results').children('table').append(
+							'<tr><td>' +value.name + '</td></tr>'
+							);
+			    	});
+			        // $( "<h1/>" ).text( json.name ).appendTo( "body" );
+			        // $( "<div class=\"content\"/>").html( json.html ).appendTo( "body" );
+			    },
+			 
+			    // code to run if the request fails; the raw request and
+			    // status codes are passed to the function
+			    error: function( xhr, status, errorThrown ) {
+			        alert( "Sorry, there was a problem!" );
+			        console.log( "Error: " + errorThrown );
+			        console.log( "Status: " + status );
+			        console.dir( xhr );
+			    },
+			 
+			    // code to run regardless of success or failure
+			    complete: function( xhr, status ) {
+			        alert( "The request is complete!" );
+			    }
+			});
+
+		});
+
+
+	});
+</script>
+
+<script>
+	$(document).ready(function(){
+	//move a div name to the selected thumbnail table
+	$('#genre-results table tr').click(function(){
+		console.log('hi');
+		var value = $(this).val();
+		$('#genre-selection').append(value);
+		$(this).remove();
+
+		});
+	});
+</script>
 {% endblock %}

@@ -16,4 +16,8 @@ Booksmart\Metrics\EchonestBundle\Entity\Genre:
         artists:
             targetEntity: Artist
             mappedBy: genre
+    manToMany:
+        searches:
+            targetEntity: Booksmart\Metrics\SoundcloudBundle\Entity\Search
+            mappedBy: genres
     lifecycleCallbacks: {  }

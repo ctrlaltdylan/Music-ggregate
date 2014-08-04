@@ -19,6 +19,9 @@ class AppKernel extends Kernel
             new Booksmart\Metrics\SoundcloudBundle\BooksmartMetricsSoundcloudBundle(),
             new Booksmart\Metrics\EchonestBundle\BooksmartMetricsEchonestBundle(),
             new Booksmart\Metrics\SeatgeekBundle\BooksmartMetricsSeatgeekBundle(),
+            new Booksmart\Metrics\NBSBundle\BooksmartMetricsNBSBundle(),
+            new Booksmart\Metrics\InstagramBundle\BooksmartMetricsInstagramBundle(),
+            new Booksmart\Hospitality\YelpBundle\BooksmartHospitalityYelpBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

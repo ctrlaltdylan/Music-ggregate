@@ -9,8 +9,10 @@ Booksmart\Metrics\SoundcloudBundle\Entity\Search:
                 strategy: AUTO
     fields:
         query:
+            nullable: true
             type: string
             length: '255'
+
     lifecycleCallbacks: {  }
 
     oneToMany:
@@ -22,3 +24,9 @@ Booksmart\Metrics\SoundcloudBundle\Entity\Search:
         artistResults:
             targetEntity: Booksmart\Metrics\EchonestBundle\Entity\Artist
             mappedBy: artistSearch
+
+    manyToMany:
+        genres:
+            targetEntity: Booksmart\Metrics\EchonestBundle\Entity\Genre
+            inversedBy: searches
+

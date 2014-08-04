@@ -1,0 +1,10 @@
+{% extends('BooksmartMetricsSoundcloudBundle:Default:base.html.twig') %}
+
+{% block body %}
+
+	{% for artist in artists %}
+
+	{{artist}}
+
+	{% endfor %}
+{% endblock %}

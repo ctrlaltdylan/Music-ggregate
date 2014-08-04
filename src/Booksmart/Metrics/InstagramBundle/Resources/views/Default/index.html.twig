@@ -1,0 +1,146 @@
+{% extends('BooksmartMetricsSoundcloudBundle:Default:base.html.twig') %}
+
+{% block additionalCSS %}
+	<style>
+	.ui-slider .ui-slider-handle {
+
+    cursor: default;
+    height: 1.2em;
+    position: absolute;
+    width: 1.2em;
+    z-index: 2;
+}
+</style>
+{% endblock %}
+
+    {% block body%}
+
+    {{ form_start(form)}}
+    <input type = 'hidden' name = 'date_range[]' id = 'date_range' />
+     	<div class = 'row'>
+        <div class = 'span4'>
+        	<div class = 'form-group'>
+        		<label>Location</label>
+          		{{form_widget(form.location)}}
+          	</div>
+        </div>
+
+        <div class = 'span4'>
+        	<div class = 'form-group'>
+        		<label>Radius (in Miles)</label>
+          		{{form_widget(form.radius)}}
+          	</div>
+        </div>
+       	<div class = 'span4'>
+       		<div class = 'form-group'>
+        		{{form_widget(form.search)}}
+        	</div>
+        </div>
+       	</div>{#/row#}
+       	<br>
+        <div class = 'row'>
+        	<div class = 'span10'>
+          		<div id = 'daterange-slider' class = 'noUiSlider'></div>
+          	</div>
+          </div>
+          <div class = 'span5'>
+          		<div id = 'event-start'></div>
+          </div>
+          <div class = 'span5 pull-right'>
+          		<div id = 'event-end'></div>
+          </div>
+        </div>{#/row#}
+        <div class = 'row'>
+
+        </div>
+    {{ form_end(form)}}
+
+    <div id="map-canvas"/>
+
+    <script>
+		// Create a new date from a string, return as a timestamp.
+		function timestamp(str){
+		    return new Date(str).getTime();   
+		}
+		// Create a list of day and monthnames.
+// Create a list of day and monthnames.
+var
+	weekdays = [
+		"Sunday", "Monday", "Tuesday",
+		"Wednesday", "Thursday", "Friday",
+		"Saturday"
+	],
+	months = [
+		"January", "February", "March",
+		"April", "May", "June", "July",
+		"August", "September", "October",
+		"November", "December"
+	];
+
+// Append a suffix to dates.
+// Example: 23 => 23rd, 1 => 1st.
+function nth (d) {
+  if(d>3 && d<21) return 'th';
+  switch (d % 10) {
+        case 1:  return "st";
+        case 2:  return "nd";
+        case 3:  return "rd";
+        default: return "th";
+    }
+}
+
+// Create a string representation of the date.
+function formatDate ( date ) {
+    return weekdays[date.getDay()] + ", " +
+        date.getDate() + nth(date.getDate()) + " " +
+        months[date.getMonth()] + " " +
+        date.getFullYear();
+}
+
+// Write a date as a pretty value.
+function setDate( value ){
+    $(this).html(formatDate(new Date(+value)));   
+}
+
+var today = new Date();
+
+
+			$("#daterange-slider").noUiSlider({
+			// Create two timestamps to define a range.
+			    range: {
+			        min: new Date().getTime(),
+			        max: timestamp('2015')
+			    },
+				
+			// Steps of one day
+			    step: 24 * 60 * 60 * 1000,
+				
+			// Two more timestamps indicate the handle starting positions.
+			    start: [ new Date().getTime(), timestamp('2014') ],
+			    connect: true,
+				
+			// The setDate function will display the current values.
+			    serialization: {
+			        lower: [
+			            $.Link({
+			                target: $("#event-start"),
+			                method: setDate
+			            })
+			        ],
+					upper: [
+			            $.Link({
+			                target: $("#event-end"),
+			                method: setDate
+			            })
+			        ],
+			        format: {
+			            decimals: 0   
+			        }
+			    }
+			});
+
+    </script>
+
+
+  {% endblock %}
+

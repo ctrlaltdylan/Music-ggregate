@@ -1,0 +1,3 @@
+booksmart_metrics_instagram_homepage:
+    path:     /location/search
+    defaults: { _controller: BooksmartMetricsInstagramBundle:Default:index }

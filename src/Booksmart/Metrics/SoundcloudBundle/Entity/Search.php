@@ -93,4 +93,42 @@ class Search
     {
         return $this->results;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $genres;
+
+
+    /**
+     * Add genres
+     *
+     * @param \Booksmart\Metrics\EchonestBundle\Entity\Genre $genres
+     * @return Search
+     */
+    public function addGenre(\Booksmart\Metrics\EchonestBundle\Entity\Genre $genres)
+    {
+        $this->genres[] = $genres;
+
+        return $this;
+    }
+
+    /**
+     * Remove genres
+     *
+     * @param \Booksmart\Metrics\EchonestBundle\Entity\Genre $genres
+     */
+    public function removeGenre(\Booksmart\Metrics\EchonestBundle\Entity\Genre $genres)
+    {
+        $this->genres->removeElement($genres);
+    }
+
+    /**
+     * Get genres
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGenres()
+    {
+        return $this->genres;
+    }
 }

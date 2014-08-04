@@ -1,3 +1,15 @@
+booksmart_hospitality_yelp:
+    resource: "@BooksmartHospitalityYelpBundle/Resources/config/routing.yml"
+    prefix:   /
+
+booksmart_metrics_instagram:
+    resource: "@BooksmartMetricsInstagramBundle/Resources/config/routing.yml"
+    prefix:   /
+
+booksmart_metrics_nbs:
+    resource: "@BooksmartMetricsNBSBundle/Resources/config/routing.yml"
+    prefix:   /
+
 booksmart_metrics_seatgeek:
     resource: "@BooksmartMetricsSeatgeekBundle/Resources/config/routing.yml"
     prefix:   /

@@ -1,0 +1,149 @@
+{% extends('BooksmartMetricsSoundcloudBundle:Default:base.html.twig') %}
+    {% block additionalCSS %}
+    <style type="text/css">
+/*      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }*/
+      #map-canvas { height: 100% }
+
+     #pac-input {
+        background-color: #fff;
+        padding: 0 11px 0 13px;
+        width: 400px;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        text-overflow: ellipsis;
+      }
+
+      #pac-input:focus {
+        border-color: #4d90fe;
+        margin-left: -1px;
+        padding-left: 14px;  /* Regular padding-left + 1. */
+        width: 401px;
+      }
+
+      .pac-container {
+        font-family: Roboto;
+      }
+
+      #type-selector {
+        color: #fff;
+        background-color: #4d90fe;
+        padding: 5px 11px 0px 11px;
+      }
+
+      #type-selector label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+    </style>
+
+  <style>
+      .ui-slider .ui-slider-handle {
+
+        cursor: default;
+        height: 1.2em;
+        position: absolute;
+        width: 1.2em;
+        z-index: 2;
+    }
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiIV2shykrmHwxD5-YhFiOqZhTFI4BIRM&libraries=places">
+    </script>
+     <script type="text/javascript">
+          function initialize() {
+
+            //creating the map instance
+            var philadelphia = new google.maps.LatLng({{lat}},{{lng}});
+            var mapOptions = {
+              zoom: 12,
+              center: philadelphia
+            };
+            var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+{#
+            {% for event in events %}
+
+                var Latlng{{event.id}} = new google.maps.LatLng({{event.venue.location.lat}},{{event.venue.location.lon}});
+
+                var marker{{event.id}} = new google.maps.Marker({
+                    position: Latlng{{event.id}},
+                    map: map,
+                    title: 'Hello World!'
+                });
+
+                var eventDateTime{{event.id}} = new Date('{{event.datetime_local}}');
+                //creating the marker info windows
+                var contentString{{event.id}} = "<div class = 'col-md-4'>" +
+                "<h2>{{event.title}}</h2><h3> @ {{event.venue.name}}</div></h3><hr></div>" +
+                {% for performer in event.performers %}
+                  {% if performer.image is not null %}
+                       "<div class = 'col-md-4'><img src = '{{performer.image}}' width = '200' height = '200' style = 'display:inline-block; text-align:center'>"+
+                  {% endif %}
+                {% endfor %}
+                "<p>Time: " + eventDateTime{{event.id}}.toLocaleString() +"</p>"+
+                "<p><a href = '{{event.url}}' class = 'btn btn-ion btn-success'>Buy Tickets</a></p>"+
+                "</div>";
+
+                 var infowindow{{event.id}} = new google.maps.InfoWindow({
+                           content: contentString{{event.id}},
+                   });
+
+                   google.maps.event.addListener(marker{{event.id}}, 'click', function() {
+                           infowindow{{event.id}}.setContent(contentString{{event.id}});
+                           infowindow{{event.id}}.open(map,marker{{event.id}});
+                   });
+
+            {% endfor %}
+#}
+          }
+
+
+
+          google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    {% endblock %}
+    {% block body%}
+
+      <div class = 'row'>
+        <div class = 'span4'>
+          <div class = 'form-group'>
+            <label>Location</label>
+              {{form_widget(form.location)}}
+            </div>
+        </div>
+
+        <div class = 'span4'>
+          <div class = 'form-group'>
+            <label>Radius (in Miles)</label>
+              {{form_widget(form.radius)}}
+            </div>
+        </div>
+        <div class = 'span4'>
+          <div class = 'form-group'>
+            {{form_widget(form.search)}}
+          </div>
+        </div>
+        </div>{#/row#}
+        <br>
+        <div class = 'row'>
+          <div class = 'span10'>
+              <div id = 'daterange-slider' class = 'noUiSlider'></div>
+            </div>
+          </div>
+          <div class = 'span5'>
+              <div id = 'event-start'></div>
+          </div>
+          <div class = 'span5 pull-right'>
+              <div id = 'event-end'></div>
+          </div>
+        </div>{#/row#}
+        <div class = 'row'>
+
+        </div>
+{{$media}}
+    <div id="map-canvas"/>
+
+  {% endblock %}

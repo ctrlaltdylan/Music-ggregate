@@ -1,0 +1,38 @@
+  {{ form_start(form)}}
+ 	<div class = 'row'>
+    <div class = 'span4'>
+    	<div class = 'form-group'>
+    		<label>Location</label>
+      		{{form_widget(form.location)}}
+      	</div>
+    </div>
+
+    <div class = 'span4'>
+    	<div class = 'form-group'>
+    		<label>Radius (in Miles)</label>
+      		{{form_widget(form.radius)}}
+      	</div>
+    </div>
+   	<div class = 'span4'>
+   		<div class = 'form-group'>
+    		{{form_widget(form.search)}}
+    	</div>
+    </div>
+   	</div>{#/row#}
+   	<br>
+    <div class = 'row'>
+    	<div class = 'span10'>
+      		<div id = 'daterange-slider' class = 'noUiSlider'></div>
+      	</div>
+      </div>
+      <div class = 'span5'>
+      		<div id = 'event-start'></div>
+      </div>
+      <div class = 'span5 pull-right'>
+      		<div id = 'event-end'></div>
+      </div>
+    </div>{#/row#}
+    <div class = 'row'>
+
+    </div>
+    {{ form_end(form)}}

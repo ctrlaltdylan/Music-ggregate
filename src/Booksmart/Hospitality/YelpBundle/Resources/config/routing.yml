@@ -1,0 +1,3 @@
+booksmart_hospitality_yelp_homepage:
+    path:     /yelp/
+    defaults: { _controller: BooksmartHospitalityYelpBundle:Default:index }

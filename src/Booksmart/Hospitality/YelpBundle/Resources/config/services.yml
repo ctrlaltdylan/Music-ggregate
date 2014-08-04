@@ -1,0 +1,13 @@
+parameters:
+#    booksmart_hospitality_yelp.example.class: Booksmart\Hospitality\YelpBundle\Example
+    consumer_key: OpfqKJ5t2_7mGrhBzThiLA
+    consumer_secret: TwAAZ9gB7BeJVF2EvAQ_NaFnajY
+    token: IknWFbvD_GfAnZ8oPiYVAscKAjhXJs0w
+    token_secret: FhT2uhdnTiP5jPwxSE6uxAGHWKk
+services:
+#    booksmart_hospitality_yelp.example:
+#        class: %booksmart_hospitality_yelp.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+    yelp:
+        class: Booksmart\Hospitality\YelpBundle\Yelp
+        arguments: [%consumer_key%, %consumer_secret%, %token%, %token_secret%]

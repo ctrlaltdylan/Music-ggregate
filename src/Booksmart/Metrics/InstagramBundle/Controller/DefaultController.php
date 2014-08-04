@@ -1,16 +1,17 @@
 <?php
 
-namespace Booksmart\Metrics\SeatgeekBundle\Controller;
+namespace Booksmart\Metrics\InstagramBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 
-
 class DefaultController extends Controller
 {
-    public function eventsSearchAction(Request $request)
+    public function indexAction(Request $request)
     {
+    	//access token
+    	//1259789532.6f70da2.3309a99cd41f4663976bb0b2a17ce7fe
     	$form = $this->createFormBuilder()
    			->add('location', 'text')
    			->add('radius', 'text')
@@ -20,7 +21,6 @@ class DefaultController extends Controller
    		
    		$form->handleRequest($request);
    		  if ($request->getMethod() == 'POST') {
-		    //$form->submit($request);
 		    // data is an array with "name", "email", and "message" keys
 		    $data = $form->getData();
 
@@ -33,21 +33,19 @@ class DefaultController extends Controller
 		    $lat = $geocodeResponse->results[0]->geometry->location->lat;
 		    $lng = $geocodeResponse->results[0]->geometry->location->lng;
 
-   			$response = json_decode(file_get_contents('http://api.seatgeek.com/2/events?per_page=200'. '&lat='.$lat  . '&lon=' . $lng . '&range='.$radius.'mi'));
+		  $media = json_decode(file_get_contents('https://api.instagram.com/v1/locations/search?lat=' . $lat . '&lng=' . $lng . '&access_token=1259789532.6f70da2.3309a99cd41f4663976bb0b2a17ce7fe'));
 
-	        return $this->render('BooksmartMetricsSeatgeekBundle:Default:eventsResult.html.twig', array(
-        		'form' => $form->createView(),
-        		'events' => $response->events,
-        		'lat'    => $lat,
-        		'lng'	 => $lng
-        	));	
-
-		  } else {
-
-		  	 return $this->render('BooksmartMetricsSeatgeekBundle:Default:eventsSearch.html.twig', array(
-        		'form' => $form->createView(),
-        		
+        return $this->render('BooksmartMetricsInstagramBundle:Default:locationResultss.html.twig', array(
+        			'media' => $media,
+        			'lat'	=> $lat,
+        			'lng'	=> $lng,
+        			'form'	=> $form->createView()
         	));
-		  }
+    }
+        else {
+        	return $this->render('BooksmartMetricsInstagramBundle:Default:index.html.twig', array(
+        			'form' => $form->createView(),
+        		));
+        }
     }
 }

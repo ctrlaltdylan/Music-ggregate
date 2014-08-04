@@ -1,5 +1,9 @@
 <html>
 	<head>
+		{% javascripts 'bundles/jquery/*' %}
+			<script src = {{asset_url}}></script>
+		{% endjavascripts %}
+
 		{% stylesheets 'bundles/bootstrap/css/*' %}
 			<link rel = 'stylesheet' href = {{ asset_url }} />
 		{% endstylesheets %}
@@ -7,6 +11,21 @@
 		{% javascripts 'bundles/bootstrap/js/*' %}
 			<script  src = {{ asset_url }}></script>
 		{% endjavascripts %}
+
+		{% stylesheets 'bundles/nouislider/css/*'
+					   'bundles/font-awesome/css/font-awesome.min.css'
+
+		 %}
+			<link rel = 'stylesheet' href = {{ asset_url }} />
+		{% endstylesheets %}
+
+
+		{% javascripts 'bundles/nouislider/js/*' %}
+			<script src = {{asset_url}}></script>
+		{% endjavascripts %}
+
+		{% block additionalCSS %}
+		{% endblock %}
 	</head>
 	<body>
 
@@ -18,7 +37,7 @@
 		      	<a href="{{path('booksmart_metrics_soundcloud_search')}}">Search</a>
 		      </li>
 		      <li><a href="{{path('booksmart_metrics_soundcloud_tracks')}}">Tracks</a></li>
-		      <li><a href="#">Link</a></li>
+		      <li><a href="#">Events</a></li>
 		    </ul>
 		  </div>
 		</div>
@@ -31,6 +50,8 @@
 					  <li><a href="#"></a>Genre</li>
 					  <li class='nav-header'>Search EchoNest</li>
 					  <li><a href = '{{ path('booksmart_metrics_echonest_search')}}'>Artists</a></li>
+					  <li class = 'nav-header'>Search SeatGeek</li>
+					  <li><a href = '#'>Events</a>
 					</ul>
 					{% block title %}{% endblock %}
 				</div>
